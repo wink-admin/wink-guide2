@@ -204,7 +204,7 @@
         }
 
         /* ---------------------------------------------------------
-           4. Components (Grid, Steps, Cards)
+           4. Components
         --------------------------------------------------------- */
         .process-steps {
             display: flex;
@@ -275,12 +275,16 @@
             padding: 12px;
             margin: 2rem 0 3rem;
             box-shadow: var(--shadow-md);
+            transition: transform 0.2s;
         }
+        .img-box:hover { transform: translateY(-2px); }
         .manual-img { width: 100%; height: auto; border-radius: 12px; display: block; }
+        
         .img-placeholder {
+            display: none;
             width: 100%; height: 240px;
             background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 12px;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            flex-direction: column; align-items: center; justify-content: center;
             color: #94a3b8; gap: 10px; font-size: 0.9rem;
         }
         .img-placeholder code { 
@@ -289,7 +293,7 @@
         }
 
         /* ---------------------------------------------------------
-           6. Timeline Style (Workers)
+           6. Timeline Style
         --------------------------------------------------------- */
         .sign-process { display: flex; flex-direction: column; gap: 0; margin: 3rem 0; }
         .step-item { display: flex; gap: 1.5rem; align-items: flex-start; position: relative; padding-bottom: 3rem; }
@@ -348,6 +352,12 @@
         }
 
         function imgError(image) {
+            // 확장자 자동 보정 (png -> jpg)
+            if (!image.dataset.triedJpg && image.src.includes('.png')) {
+                image.dataset.triedJpg = "true";
+                image.src = image.src.replace('.png', '.jpg');
+                return;
+            }
             image.style.display = 'none';
             if (image.nextElementSibling) image.nextElementSibling.style.display = 'flex';
         }
@@ -473,9 +483,10 @@
                 <h3>사업주 정보 입력</h3>
                 <p>업체명, 대표자, 사업자등록번호 등 기초 정보를 입력합니다.</p>
                 <div class="img-box">
+                    <img src="img/att_admin_01.png" alt="사업사용주 등록" class="manual-img" onerror="imgError(this)">
                     <div class="img-placeholder">
                         <p><strong>사업사용주 등록 화면</strong></p>
-                        <code>PDF Page 4-5 참고</code>
+                        <code>att_admin_01.png</code>
                     </div>
                 </div>
             </div>
@@ -494,9 +505,10 @@
                 </div>
 
                 <div class="img-box">
+                    <img src="img/att_admin_02.png" alt="근로현장 등록" class="manual-img" onerror="imgError(this)">
                     <div class="img-placeholder">
                         <p><strong>근로현장 등록 화면</strong></p>
-                        <code>PDF Page 6-7 참고</code>
+                        <code>att_admin_02.png</code>
                     </div>
                 </div>
             </div>
@@ -505,6 +517,9 @@
             <div id="admin-3" class="tab-content">
                 <h2>3. 현장배정 세팅</h2>
                 <p>출근 시간, 퇴근 시간, 그리고 GPS 거리 제한 등 상세 근태 규칙을 설정합니다.</p>
+                <div class="info-box">
+                    <strong>경로:</strong> 메뉴 [근로내역] → [현장배정] → [추가] 버튼 클릭
+                </div>
 
                 <h3>주요 설정 항목</h3>
                 <ul>
@@ -515,9 +530,17 @@
                 </ul>
 
                 <div class="img-box">
+                    <img src="img/att_admin_03.png" alt="현장배정 세팅" class="manual-img" onerror="imgError(this)">
                     <div class="img-placeholder">
                         <p><strong>현장배정 세팅 화면</strong></p>
-                        <code>PDF Page 9-11 참고</code>
+                        <code>att_admin_03.png</code>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="img/att_admin_03-1.png" alt="현장배정 세팅" class="manual-img" onerror="imgError(this)">
+                    <div class="img-placeholder">
+                        <p><strong>현장배정 세팅 화면</strong></p>
+                        <code>att_admin_03-1.png</code>
                     </div>
                 </div>
             </div>
@@ -526,6 +549,9 @@
             <div id="admin-4" class="tab-content">
                 <h2>4. 업무할당 및 인원배정</h2>
                 <p>현장 내에서 수행할 세부 업무를 만들고, 출근한 인원을 각 팀(조)에 배치합니다.</p>
+                <div class="info-box">
+                    <strong>경로:</strong> 메뉴 [근무내역] → [업무할당] → [추가] 버튼 클릭
+                </div>
 
                 <h3>업무 및 인원 배정 순서</h3>
                 <ol>
@@ -536,9 +562,24 @@
                 </ol>
 
                 <div class="img-box">
+                    <img src="img/att_admin_04.png" alt="업무할당" class="manual-img" onerror="imgError(this)">
                     <div class="img-placeholder">
                         <p><strong>업무할당 및 드래그 배정 화면</strong></p>
-                        <code>PDF Page 12-15 참고</code>
+                        <code>att_admin_04.png</code>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="img/att_admin_04-1.png" alt="업무할당" class="manual-img" onerror="imgError(this)">
+                    <div class="img-placeholder">
+                        <p><strong>업무할당 및 드래그 배정 화면</strong></p>
+                        <code>att_admin_04-1.png</code>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="img/att_admin_04-2.png" alt="업무할당" class="manual-img" onerror="imgError(this)">
+                    <div class="img-placeholder">
+                        <p><strong>업무할당 및 드래그 배정 화면</strong></p>
+                        <code>att_admin_04-2.png</code>
                     </div>
                 </div>
             </div>
@@ -549,16 +590,21 @@
                 <p>실시간으로 근로자들의 출퇴근 상태와 지각 여부를 모니터링합니다.</p>
 
                 <div class="info-box">
-                    <strong>기능:</strong> 출/퇴근 시각 확인, 데이터 엑셀 다운로드, 상신 처리
+                    <strong>경로:</strong> 메뉴 [근무내역] → [근태현황] 조회
                 </div>
 
-                <h3>상신 버튼 활용</h3>
-                <p>체크박스로 근로자를 선택한 후 <strong>[상신]</strong> 버튼을 클릭하면 원청사(도급사)가 해당 데이터를 확인하여 결산할 수 있는 상태가 됩니다.</p>
+                <h3>주요 기능 요약</h3>
+                <ul>
+                    <li>근로자 출·퇴근 상태 실시간 확인 / 근태 데이터 엑셀 다운로드</li>
+                    <li>지각, 조퇴, 연장근무, 기본근무 현황 집계 / 현장·근로자·기간·상태별 필터 조회</li>
+                    <li>선택 근태 내역 상신 처리(원청/관리자 확인용) / 급여 정산 및 근태 이력 관리 연동</li>
+                </ul>
 
                 <div class="img-box">
+                    <img src="img/att_admin_05.png" alt="근태현황 조회" class="manual-img" onerror="imgError(this)">
                     <div class="img-placeholder">
                         <p><strong>근태현황 목록 화면</strong></p>
-                        <code>PDF Page 16 참고</code>
+                        <code>att_admin_05.png</code>
                     </div>
                 </div>
             </div>
@@ -574,9 +620,10 @@
                 </ul>
 
                 <div class="img-box">
+                    <img src="img/att_admin_06.png" alt="근태대조 결산" class="manual-img" onerror="imgError(this)">
                     <div class="img-placeholder">
                         <p><strong>근태대조 및 결산 화면</strong></p>
-                        <code>PDF Page 17 참고</code>
+                        <code>att_admin_06.png</code>
                     </div>
                 </div>
             </div>
@@ -618,6 +665,20 @@
                         </div>
                     </div>
                 </div>
+                <div class="img-box">
+                    <img src="img/att_user_01.png" alt="앱 설치 및 가입" class="manual-img" onerror="imgError(this)">
+                    <div class="img-placeholder">
+                        <p><strong>앱 설치 및 회원가입 화면</strong></p>
+                        <code>att_user_01.png</code>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="img/att_user_01-1.png" alt="앱 설치 및 가입" class="manual-img" onerror="imgError(this)">
+                    <div class="img-placeholder">
+                        <p><strong>앱 설치 및 회원가입 화면</strong></p>
+                        <code>att_user_01-1.png</code>
+                    </div>
+                </div>
             </div>
 
             <!-- [8] 소속 선택 -->
@@ -632,9 +693,10 @@
                 <p>홈 화면의 [근무장소]를 클릭하면 자신에게 배정된 현장 목록이 나타납니다. 오늘 일할 장소를 정확히 선택하세요.</p>
 
                 <div class="img-box">
+                    <img src="img/att_user_02.png" alt="소속 및 장소 선택" class="manual-img" onerror="imgError(this)">
                     <div class="img-placeholder">
                         <p><strong>모바일 APP 소속/장소 선택 화면</strong></p>
-                        <code>PDF Page 21-22 참고</code>
+                        <code>att_user_02.png</code>
                     </div>
                 </div>
             </div>
@@ -655,9 +717,17 @@
                 </ol>
 
                 <div class="img-box">
+                    <img src="img/att_user_03.png" alt="출퇴근 기록" class="manual-img" onerror="imgError(this)">
                     <div class="img-placeholder">
                         <p><strong>모바일 APP 출퇴근 기록 화면</strong></p>
-                        <code>PDF Page 23-24 참고</code>
+                        <code>att_user_03.png</code>
+                    </div>
+                </div>
+                <div class="img-box">
+                    <img src="img/att_user_03-1.png" alt="출퇴근 기록" class="manual-img" onerror="imgError(this)">
+                    <div class="img-placeholder">
+                        <p><strong>모바일 APP 출퇴근 기록 화면</strong></p>
+                        <code>att_user_03-1.png</code>
                     </div>
                 </div>
             </div>
@@ -681,7 +751,7 @@
                             <div style="font-size: 0.9rem; color: #64748b; margin-top: 5px;">24시간 접수 가능</div>
                         </div>
                     </div>
-                    <div style="margin-top: 4rem; border-top: 1px solid #e2e8f0; pt-2rem;">
+                    <div style="margin-top: 4rem; border-top: 1px solid #e2e8f0;">
                         <p style="color: #94a3b8; font-size: 0.85rem; padding-top: 2rem;">ⓒ Howlink Corp. All rights reserved.</p>
                         <p style="font-size: 0.85rem; color: #cbd5e1;">www.howlink.ai</p>
                     </div>
